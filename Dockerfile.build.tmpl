@@ -1,7 +1,7 @@
 # Please refer to the USING documentation, "Dockerfile for building from source"
 
 # Need devel version cause we need /usr/include/cudnn.h 
-FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
+FROM nvidia/cuda:11.1-devel-ubuntu20.04
 
 ENV DEEPSPEECH_REPO=#DEEPSPEECH_REPO#
 ENV DEEPSPEECH_SHA=#DEEPSPEECH_SHA#
@@ -60,11 +60,11 @@ ENV TF_NEED_ROCM 0
 ENV TF_NEED_OPENCL_SYCL 0
 ENV TF_NEED_OPENCL 0
 ENV TF_NEED_CUDA 1
-ENV TF_CUDA_PATHS "/usr,/usr/local/cuda-10.1,/usr/lib/x86_64-linux-gnu/"
-ENV TF_CUDA_VERSION 10.1
-ENV TF_CUDNN_VERSION 7.6
-ENV TF_CUDA_COMPUTE_CAPABILITIES 6.0
-ENV TF_NCCL_VERSION 2.7
+ENV TF_CUDA_PATHS "/usr,/usr/local/cuda-11.2,/usr/lib/x86_64-linux-gnu/"
+ENV TF_CUDA_VERSION 11.2
+ENV TF_CUDNN_VERSION 8.0
+ENV TF_CUDA_COMPUTE_CAPABILITIES 8.6
+ENV TF_NCCL_VERSION 2.8
 
 # Common Environment Setup
 ENV TF_BUILD_CONTAINER_TYPE GPU
