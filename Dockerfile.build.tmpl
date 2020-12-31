@@ -2,6 +2,8 @@
 
 # Need devel version cause we need /usr/include/cudnn.h 
 FROM nvidia/cuda:11.1-devel-ubuntu20.04
+ENV TZ=Europe/Bucharest
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 ENV DEEPSPEECH_REPO=#DEEPSPEECH_REPO#
 ENV DEEPSPEECH_SHA=#DEEPSPEECH_SHA#
