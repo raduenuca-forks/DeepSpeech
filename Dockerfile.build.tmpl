@@ -9,6 +9,9 @@ ENV DEEPSPEECH_REPO=#DEEPSPEECH_REPO#
 ENV DEEPSPEECH_SHA=#DEEPSPEECH_SHA#
 
 # >> START Install base software
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        software-properties-common
+RUN add-apt-repository ppa:deadsnakes/ppa
 
 # Get basic packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -64,8 +67,8 @@ ENV TF_NEED_ROCM 0
 ENV TF_NEED_OPENCL_SYCL 0
 ENV TF_NEED_OPENCL 0
 ENV TF_NEED_CUDA 1
-ENV TF_CUDA_PATHS "/usr,/usr/local/cuda-11.2,/usr/lib/x86_64-linux-gnu/"
-ENV TF_CUDA_VERSION 11.2
+ENV TF_CUDA_PATHS "/usr,/usr/local/cuda-11.1,/usr/lib/x86_64-linux-gnu/"
+ENV TF_CUDA_VERSION 11.1
 ENV TF_CUDNN_VERSION 8.0
 ENV TF_CUDA_COMPUTE_CAPABILITIES 8.6
 ENV TF_NCCL_VERSION 2.8
