@@ -46,6 +46,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         zlib1g-dev
 
+# Install CuDNN 8.0.5.39
+RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
+
+RUN mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
+RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub
+RUN add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /"
+RUN apt-get update && apt-get install -y --no-install-recommends \
+         libcudnn8-dev=8.0.5.39-1+cuda11.1        
+
 RUN update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1
 
@@ -69,7 +78,7 @@ ENV TF_NEED_OPENCL 0
 ENV TF_NEED_CUDA 1
 ENV TF_CUDA_PATHS "/usr,/usr/local/cuda-11.1,/usr/lib/x86_64-linux-gnu/"
 ENV TF_CUDA_VERSION 11.1
-ENV TF_CUDNN_VERSION 8.0.4
+ENV TF_CUDNN_VERSION 8.0.5
 ENV TF_CUDA_COMPUTE_CAPABILITIES 8.6
 ENV TF_NCCL_VERSION 2.7.8
 
